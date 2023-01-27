@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import Pagenation from "./Pagination";
+import { useDispatch } from "react-redux";
+import { searchActions } from "../store/search-slice";
 
 const Products = ({ data }) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(searchActions.setDataLength(data.length));
+  }, [data]);
 
   return (
     <>

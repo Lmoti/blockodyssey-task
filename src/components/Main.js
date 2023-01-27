@@ -13,6 +13,7 @@ const getProducts = async () => {
 const Main = () => {
   const condition = useSelector((state) => state.search.condition);
   const keyword = useSelector((state) => state.search.keyword);
+  const length = useSelector((state) => state.search.length);
 
   const { data, isError, error, isLoading } = useQuery(
     ["products"],
@@ -69,7 +70,7 @@ const Main = () => {
   return (
     <>
       <Search />
-      {filterProducts(condition, keyword)}
+      검색된 데이터 : {length}건{filterProducts(condition, keyword)}
     </>
   );
 };

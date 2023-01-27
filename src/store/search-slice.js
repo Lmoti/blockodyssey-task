@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialSearchState = { condition: "all", keyword: "" };
+const initialSearchState = { condition: "all", keyword: "", length: 0 };
 
 const searchSlice = createSlice({
   name: "search",
@@ -13,6 +13,10 @@ const searchSlice = createSlice({
     setKeyword(state, action) {
       const value = action.payload;
       state.keyword = value;
+    },
+    setDataLength(state, action) {
+      const value = action.payload;
+      state.length = value;
     },
   },
 });
