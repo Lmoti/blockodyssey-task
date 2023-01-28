@@ -1,0 +1,42 @@
+.pagenation-container {
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  margin-right: 10%;
+}
+
+.pagenation-container button {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: white;
+  margin: 0px 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.pagenation-container button:hover {
+  background-color: lightgray;
+}
+
+.pagenation-container .current-page {
+  background-color: lightgray;
+  border: 1px solid gray;
+}
+
+.pagenation-container select {
+  border: none;
+  margin: 0px 20px 0px 10px;
+}
+
+.pagenation-container .disabled-btn {
+  border: none;
+  background-color: white;
+  color: black;
+}
+
+.pagenation-container .disabled-btn:hover {
+  background-color: white;
+}

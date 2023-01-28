@@ -3,17 +3,17 @@ import React from "react";
 const Product = ({ product }) => {
   return (
     <li className="list">
-      <span>{product.id}</span>
-      <span>{product.title}</span>
-      <span>{product.brand}</span>
-      <span>
+      <span className="id">{product.id}</span>
+      <span className="title">{product.title}</span>
+      <span className="brand">{product.brand}</span>
+      <span className="description">
         {product.description.length > 40
           ? product.description.slice(0, 40) + "..."
           : product.description}
       </span>
-      <span>{product.price}</span>
-      <span>{product.rating}</span>
-      <span>{product.stock}</span>
+      <span className="price">${product.price.toLocaleString("ko-KR")}</span>
+      <span className="rating">{product.rating}</span>
+      <span className="stock">{product.stock}</span>
     </li>
   );
 };

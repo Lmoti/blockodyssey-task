@@ -1,4 +1,5 @@
 import React from "react";
+import "./Main.css";
 import Search from "./Search";
 import Products from "./Products";
 import axios from "axios";
@@ -70,7 +71,8 @@ const Main = () => {
   return (
     <>
       <Search />
-      검색된 데이터 : {length}건{filterProducts(condition, keyword)}
+      <div className="data-length">검색된 데이터 : {length}건</div>
+      {filterProducts(condition, keyword)}
     </>
   );
 };

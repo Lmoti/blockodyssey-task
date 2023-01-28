@@ -1,15 +1,16 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { searchActions } from "../store/search-slice";
+import "./Search.css";
 
 const Search = () => {
   const dispatch = useDispatch();
   const keywordRef = useRef();
 
   return (
-    <div>
+    <div className="search-container">
       <h3>상품검색</h3>
-      <div>
+      <div className="search">
         <span>검색</span>
         <select
           onChange={(e) => {

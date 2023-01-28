@@ -1,0 +1,47 @@
+.search-container {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin: 15px;
+  box-shadow: 0 1px 1px gray;
+  background-color: white;
+}
+
+.search-container h3 {
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
+}
+
+.search-container .search {
+  padding: 10px 20px;
+}
+
+.search-container .search span {
+  margin-right: 10%;
+}
+
+.search-container .search select {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-right: 20px;
+  padding: 10px 35px 10px 5px;
+}
+
+.search-container .search select option {
+  background-color: red;
+}
+
+.search-container .search input {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  width: 25%;
+  margin-right: 20px;
+  padding: 10px 10px;
+}
+
+.search-container .search button {
+  border: 2px solid black;
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 15px;
+}

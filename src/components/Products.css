@@ -1,0 +1,52 @@
+.products-container {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin: 15px;
+  box-shadow: 0 5px 10px lightgray;
+  background-color: white;
+}
+
+.column {
+  display: flex;
+  border-bottom: 1px solid lightgray;
+  padding: 20px 0px;
+  font-weight: bold;
+}
+
+.list {
+  display: flex;
+  border-bottom: 1px solid lightgray;
+  padding: 15px 0px;
+}
+
+.products-container span {
+  text-align: center;
+}
+
+.id {
+  width: 8%;
+}
+
+.title {
+  width: 22%;
+}
+
+.brand {
+  width: 20%;
+}
+
+.description {
+  width: 30%;
+}
+
+.price {
+  width: 10%;
+}
+
+.rating {
+  width: 5%;
+}
+
+.stock {
+  width: 5%;
+}
