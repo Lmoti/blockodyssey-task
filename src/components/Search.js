@@ -1,12 +1,11 @@
 import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { searchActions } from "../store/search-slice";
-import { pageActions } from "../store/page-slice";
 import "./Search.css";
+import { useSearchParams } from "react-router-dom";
 
 const Search = () => {
-  const dispatch = useDispatch();
+  const [params, setParams] = useSearchParams();
   const keywordRef = useRef();
+  const keyword = params.get("keyword");
 
   return (
     <div className="search-container">
@@ -14,8 +13,9 @@ const Search = () => {
       <div className="search">
         <span>검색</span>
         <select
+          defaultValue={params.get("condition")}
           onChange={(e) => {
-            dispatch(searchActions.setCondition(e.target.value));
+            params.set("condition", e.target.value);
           }}
         >
           <option value="all">전체</option>
@@ -23,11 +23,12 @@ const Search = () => {
           <option value="brand">브랜드</option>
           <option value="description">상품내용</option>
         </select>
-        <input ref={keywordRef} />
+        <input defaultValue={keyword} ref={keywordRef} />
         <button
           onClick={() => {
-            dispatch(searchActions.setKeyword(keywordRef.current.value));
-            dispatch(pageActions.setPage(1));
+            params.set("keyword", keywordRef.current.value);
+            params.set("page", 1);
+            setParams(params);
           }}
         >
           조회

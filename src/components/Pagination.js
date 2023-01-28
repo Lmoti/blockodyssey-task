@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { pageActions } from "../store/page-slice";
+import React from "react";
+import { useSearchParams } from "react-router-dom";
 import "./Pagination.css";
 
 const Pagination = ({ total }) => {
-  const dispatch = useDispatch();
-  const page = useSelector((state) => state.page.page);
-  const limit = useSelector((state) => state.page.limit);
-  const numPages = Math.ceil(total / limit);
+  const [params, setParams] = useSearchParams();
 
-  useEffect(() => {
-    if (page > numPages) dispatch(pageActions.setPage(numPages));
-  }, [numPages]);
+  const page = +params.get("page");
+  const limit = +params.get("limit");
+  const numPages = Math.ceil(total / limit);
 
   const mainPagenation = (page) => {
     if (page < 5) {
@@ -24,7 +20,10 @@ const Pagination = ({ total }) => {
                 <button
                   className={i + 2 === page ? "current-page" : ""}
                   key={i + 2}
-                  onClick={() => dispatch(pageActions.setPage(i + 2))}
+                  onClick={() => {
+                    params.set("page", i + 2);
+                    setParams(params);
+                  }}
                 >
                   {i + 2}
                 </button>
@@ -48,7 +47,10 @@ const Pagination = ({ total }) => {
                 <button
                   className={page - 1 + i === page ? "current-page" : ""}
                   key={page - 1 + i}
-                  onClick={() => dispatch(pageActions.setPage(page - 1 + i))}
+                  onClick={() => {
+                    params.set("page", page - 1 + i);
+                    setParams(params);
+                  }}
                 >
                   {page - 1 + i}
                 </button>
@@ -72,7 +74,10 @@ const Pagination = ({ total }) => {
                 <button
                   className={i + 6 === page ? "current-page" : ""}
                   key={i + 6}
-                  onClick={() => dispatch(pageActions.setPage(i + 6))}
+                  onClick={() => {
+                    params.set("page", i + 6);
+                    setParams(params);
+                  }}
                 >
                   {i + 6}
                 </button>
@@ -87,8 +92,11 @@ const Pagination = ({ total }) => {
     <div className="pagenation-container">
       <span>페이지 당 행:</span>
       <select
+        defaultValue={limit}
         onChange={(e) => {
-          dispatch(pageActions.setLimit(+e.target.value));
+          params.set("limit", +e.target.value);
+          params.set("page", 1);
+          setParams(params);
         }}
       >
         <option value={10}>10</option>
@@ -99,26 +107,38 @@ const Pagination = ({ total }) => {
         <>
           <button
             disabled={page === 1}
-            onClick={() => dispatch(pageActions.setPage(page - 1))}
+            onClick={() => {
+              params.set("page", page - 1);
+              setParams(params);
+            }}
           >
             {"<"}
           </button>
           <button
             className={page === 1 ? "current-page" : ""}
-            onClick={() => dispatch(pageActions.setPage(1))}
+            onClick={() => {
+              params.set("page", 1);
+              setParams(params);
+            }}
           >
             1
           </button>
           {mainPagenation(page)}
           <button
             className={page === numPages ? "current-page" : ""}
-            onClick={() => dispatch(pageActions.setPage(numPages))}
+            onClick={() => {
+              params.set("page", numPages);
+              setParams(params);
+            }}
           >
             {numPages}
           </button>
           <button
             disabled={page === numPages}
-            onClick={() => dispatch(pageActions.setPage(page + 1))}
+            onClick={() => {
+              params.set("page", page + 1);
+              setParams(params);
+            }}
           >
             {">"}
           </button>
@@ -127,7 +147,10 @@ const Pagination = ({ total }) => {
         <>
           <button
             disabled={page === 1}
-            onClick={() => dispatch(pageActions.setPage(page - 1))}
+            onClick={() => {
+              params.set("page", page - 1);
+              setParams(params);
+            }}
           >
             {"<"}
           </button>
@@ -138,7 +161,10 @@ const Pagination = ({ total }) => {
                 <button
                   className={i + 1 === page ? "current-page" : ""}
                   key={i + 1}
-                  onClick={() => dispatch(pageActions.setPage(i + 1))}
+                  onClick={() => {
+                    params.set("page", i + 1);
+                    setParams(params);
+                  }}
                 >
                   {i + 1}
                 </button>
@@ -146,7 +172,10 @@ const Pagination = ({ total }) => {
             })}
           <button
             disabled={page === numPages}
-            onClick={() => dispatch(pageActions.setPage(page + 1))}
+            onClick={() => {
+              params.set("page", page + 1);
+              setParams(params);
+            }}
           >
             {">"}
           </button>

@@ -2,17 +2,17 @@ import React, { useEffect } from "react";
 import "./Products.css";
 import Product from "./Product";
 import Pagination from "./Pagination";
-import { useDispatch, useSelector } from "react-redux";
-import { searchActions } from "../store/search-slice";
+import { useSearchParams } from "react-router-dom";
 
 const Products = ({ data }) => {
-  const dispatch = useDispatch();
-  const page = useSelector((state) => state.page.page);
-  const limit = useSelector((state) => state.page.limit);
+  const [params, setParams] = useSearchParams();
+  const page = +params.get("page");
+  const limit = +params.get("limit");
 
   useEffect(() => {
-    dispatch(searchActions.setDataLength(data.length));
-  }, [data]);
+    params.set("len", data.length);
+    setParams(params);
+  }, [data.length]);
 
   return (
     <div className="products-container">
