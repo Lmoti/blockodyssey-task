@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Products.css";
 import Product from "./Product";
 import Pagination from "./Pagination";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchActions } from "../store/search-slice";
 
 const Products = ({ data }) => {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
   const dispatch = useDispatch();
+  const page = useSelector((state) => state.page.page);
+  const limit = useSelector((state) => state.page.limit);
 
   useEffect(() => {
     dispatch(searchActions.setDataLength(data.length));
@@ -32,13 +32,7 @@ const Products = ({ data }) => {
             <Product key={product.id} product={product} />
           ))}
       </ul>
-      <Pagination
-        page={page}
-        setPage={setPage}
-        limit={limit}
-        setLimit={setLimit}
-        total={data.length}
-      />
+      <Pagination total={data.length} />
     </div>
   );
 };

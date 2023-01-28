@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { searchActions } from "../store/search-slice";
+import { pageActions } from "../store/page-slice";
 import "./Search.css";
 
 const Search = () => {
@@ -14,7 +15,6 @@ const Search = () => {
         <span>검색</span>
         <select
           onChange={(e) => {
-            e.preventDefault();
             dispatch(searchActions.setCondition(e.target.value));
           }}
         >
@@ -25,9 +25,10 @@ const Search = () => {
         </select>
         <input ref={keywordRef} />
         <button
-          onClick={() =>
-            dispatch(searchActions.setKeyword(keywordRef.current.value))
-          }
+          onClick={() => {
+            dispatch(searchActions.setKeyword(keywordRef.current.value));
+            dispatch(pageActions.setPage(1));
+          }}
         >
           조회
         </button>

@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { pageActions } from "../store/page-slice";
 import "./Pagination.css";
 
-const Pagination = ({ page, setPage, limit, setLimit, total }) => {
+const Pagination = ({ total }) => {
+  const dispatch = useDispatch();
+  const page = useSelector((state) => state.page.page);
+  const limit = useSelector((state) => state.page.limit);
   const numPages = Math.ceil(total / limit);
 
   useEffect(() => {
-    if (page > numPages) setPage(numPages);
+    if (page > numPages) dispatch(pageActions.setPage(numPages));
   }, [numPages]);
 
   const mainPagenation = (page) => {
@@ -19,7 +24,7 @@ const Pagination = ({ page, setPage, limit, setLimit, total }) => {
                 <button
                   className={i + 2 === page ? "current-page" : ""}
                   key={i + 2}
-                  onClick={() => setPage(i + 2)}
+                  onClick={() => dispatch(pageActions.setPage(i + 2))}
                 >
                   {i + 2}
                 </button>
@@ -43,7 +48,7 @@ const Pagination = ({ page, setPage, limit, setLimit, total }) => {
                 <button
                   className={page - 1 + i === page ? "current-page" : ""}
                   key={page - 1 + i}
-                  onClick={() => setPage(page - 1 + i)}
+                  onClick={() => dispatch(pageActions.setPage(page - 1 + i))}
                 >
                   {page - 1 + i}
                 </button>
@@ -67,7 +72,7 @@ const Pagination = ({ page, setPage, limit, setLimit, total }) => {
                 <button
                   className={i + 6 === page ? "current-page" : ""}
                   key={i + 6}
-                  onClick={() => setPage(i + 6)}
+                  onClick={() => dispatch(pageActions.setPage(i + 6))}
                 >
                   {i + 6}
                 </button>
@@ -83,7 +88,7 @@ const Pagination = ({ page, setPage, limit, setLimit, total }) => {
       <span>페이지 당 행:</span>
       <select
         onChange={(e) => {
-          setLimit(+e.target.value);
+          dispatch(pageActions.setLimit(+e.target.value));
         }}
       >
         <option value={10}>10</option>
@@ -92,32 +97,38 @@ const Pagination = ({ page, setPage, limit, setLimit, total }) => {
       </select>
       {numPages === 10 && limit === 10 ? (
         <>
-          <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+          <button
+            disabled={page === 1}
+            onClick={() => dispatch(pageActions.setPage(page - 1))}
+          >
             {"<"}
           </button>
           <button
             className={page === 1 ? "current-page" : ""}
-            onClick={() => setPage(1)}
+            onClick={() => dispatch(pageActions.setPage(1))}
           >
             1
           </button>
           {mainPagenation(page)}
           <button
             className={page === numPages ? "current-page" : ""}
-            onClick={() => setPage(numPages)}
+            onClick={() => dispatch(pageActions.setPage(numPages))}
           >
             {numPages}
           </button>
           <button
             disabled={page === numPages}
-            onClick={() => setPage(page + 1)}
+            onClick={() => dispatch(pageActions.setPage(page + 1))}
           >
             {">"}
           </button>
         </>
       ) : (
         <>
-          <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+          <button
+            disabled={page === 1}
+            onClick={() => dispatch(pageActions.setPage(page - 1))}
+          >
             {"<"}
           </button>
           {Array(numPages)
@@ -127,7 +138,7 @@ const Pagination = ({ page, setPage, limit, setLimit, total }) => {
                 <button
                   className={i + 1 === page ? "current-page" : ""}
                   key={i + 1}
-                  onClick={() => setPage(i + 1)}
+                  onClick={() => dispatch(pageActions.setPage(i + 1))}
                 >
                   {i + 1}
                 </button>
@@ -135,7 +146,7 @@ const Pagination = ({ page, setPage, limit, setLimit, total }) => {
             })}
           <button
             disabled={page === numPages}
-            onClick={() => setPage(page + 1)}
+            onClick={() => dispatch(pageActions.setPage(page + 1))}
           >
             {">"}
           </button>
