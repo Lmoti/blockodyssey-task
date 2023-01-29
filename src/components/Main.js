@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import "./Main.css";
 import Search from "./Search";
 import Products from "./Products";
-// import { useProducts } from "../query/useGetProducts";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { queryKeys } from "../query/constant";
 import { useSearchParams } from "react-router-dom";
 
 const getProducts = async () => {
@@ -14,8 +12,6 @@ const getProducts = async () => {
 };
 
 const Main = () => {
-  // const data = useProducts();
-
   const [params, setParams] = useSearchParams();
 
   useEffect(() => {
@@ -31,7 +27,7 @@ const Main = () => {
   const keyword = params.get("keyword");
 
   const { data, isError, error, isLoading } = useQuery(
-    [queryKeys.products],
+    ["products"],
     getProducts,
     { staleTime: 2000 }
   );
