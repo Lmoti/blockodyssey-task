@@ -1,6 +1,6 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
 import "./Pagination.css";
+import { useSearchParams } from "react-router-dom";
 
 const Pagination = ({ total }) => {
   const [params, setParams] = useSearchParams();

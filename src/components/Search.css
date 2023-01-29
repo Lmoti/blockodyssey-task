@@ -26,10 +26,6 @@
   padding: 10px 35px 10px 5px;
 }
 
-.search-container .search select option {
-  background-color: red;
-}
-
 .search-container .search input {
   border: 1px solid lightgray;
   border-radius: 5px;
